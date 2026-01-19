@@ -1,16 +1,27 @@
-# React + Vite
+# Redux Reducer Challenge: Multi-Structure State Handler
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 🎯 Task Objective
+The goal of this project was to create a single Redux-style reducer capable of handling four different initial state structures. The reducer must safely update specific values (`count` and `count2`) without crashing, regardless of which state shape is currently active.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🔢 Initial State Scenarios
+The reducer is designed to work with any of the following structures:
+1. **Case 1:** `[10]` (Simple Numeric Array)
+2. **Case 2:** `[{ count: 0 }]` (Array of Single Object)
+3. **Case 3:** `[{ count: 0 }, { count2: 0 }]` (Split Objects)
+4. **Case 4:** `[{ count: 0, count2: 0 }]` (Merged Object)
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+##🚀 Key Features
+Immutability: Uses .map() and the spread operator ({...item}) to ensure the original state is never mutated, following Redux best practices.
 
-## Expanding the ESLint configuration
+Defensive Checks: Uses typeof and the in operator to identify data structures before attempting updates, preventing runtime errors.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Type Safety: Explicitly casts values to Number() to prevent the common JavaScript bug where numbers and strings accidentally concatenate (e.g., preventing 0 + 1 becoming "01").
+
+Clean UI: The UI only displays the active values found within the state, providing a user-friendly view of the underlying complex data structure.
+
+📸 Final Result
+![App Screenshot](./public/screenshot/Screenshot%202026-01-19%20175459.png)
